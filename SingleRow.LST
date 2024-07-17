@@ -1,0 +1,488 @@
+SQL> SELECT LOWER('KANUPRIYA SATI')
+  2  FROM DUAL;
+
+LOWER('KANUPRI                                                                                                                                                                                          
+--------------                                                                                                                                                                                          
+kanupriya sati                                                                                                                                                                                          
+
+SQL> SELECT UPPER('kanupriya')
+  2  from dual;
+
+UPPER('KA                                                                                                                                                                                               
+---------                                                                                                                                                                                               
+KANUPRIYA                                                                                                                                                                                               
+
+SQL> SELECT LOWER(ENAME)
+  2  FROM EMP;
+
+LOWER(ENAM                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+smith                                                                                                                                                                                                   
+allen                                                                                                                                                                                                   
+ward                                                                                                                                                                                                    
+jones                                                                                                                                                                                                   
+martin                                                                                                                                                                                                  
+blake                                                                                                                                                                                                   
+clark                                                                                                                                                                                                   
+scott                                                                                                                                                                                                   
+king                                                                                                                                                                                                    
+turner                                                                                                                                                                                                  
+adams                                                                                                                                                                                                   
+james                                                                                                                                                                                                   
+ford                                                                                                                                                                                                    
+miller                                                                                                                                                                                                  
+
+14 rows selected.
+
+SQL> SELECT INITCAP('KANUPRIYA SATI')
+  2  FROM DUAL;
+
+INITCAP('KANUP                                                                                                                                                                                          
+--------------                                                                                                                                                                                          
+Kanupriya Sati                                                                                                                                                                                          
+
+SQL> SELECT INITCAP(ENAME)
+  2  FROM EMP;
+
+INITCAP(EN                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+Smith                                                                                                                                                                                                   
+Allen                                                                                                                                                                                                   
+Ward                                                                                                                                                                                                    
+Jones                                                                                                                                                                                                   
+Martin                                                                                                                                                                                                  
+Blake                                                                                                                                                                                                   
+Clark                                                                                                                                                                                                   
+Scott                                                                                                                                                                                                   
+King                                                                                                                                                                                                    
+Turner                                                                                                                                                                                                  
+Adams                                                                                                                                                                                                   
+James                                                                                                                                                                                                   
+Ford                                                                                                                                                                                                    
+Miller                                                                                                                                                                                                  
+
+14 rows selected.
+
+SQL> SELECT REVERSE(ENAME)
+  2  FROM EMP;
+
+REVERSE(EN                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+HTIMS                                                                                                                                                                                                   
+NELLA                                                                                                                                                                                                   
+DRAW                                                                                                                                                                                                    
+SENOJ                                                                                                                                                                                                   
+NITRAM                                                                                                                                                                                                  
+EKALB                                                                                                                                                                                                   
+KRALC                                                                                                                                                                                                   
+TTOCS                                                                                                                                                                                                   
+GNIK                                                                                                                                                                                                    
+RENRUT                                                                                                                                                                                                  
+SMADA                                                                                                                                                                                                   
+SEMAJ                                                                                                                                                                                                   
+DROF                                                                                                                                                                                                    
+RELLIM                                                                                                                                                                                                  
+
+14 rows selected.
+
+SQL> SELECT REPLACE('QSPIPDERS','Q','J')
+  2  FROM DUAL;
+
+REPLACE('                                                                                                                                                                                               
+---------                                                                                                                                                                                               
+JSPIPDERS                                                                                                                                                                                               
+
+SQL> SELECT REPLACE(ENAME,'A','K');
+SELECT REPLACE(ENAME,'A','K')
+                            *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT REPLACE(ENAME,'A','K')
+  2  FROM EMP;
+
+REPLACE(EN                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+SMITH                                                                                                                                                                                                   
+KLLEN                                                                                                                                                                                                   
+WKRD                                                                                                                                                                                                    
+JONES                                                                                                                                                                                                   
+MKRTIN                                                                                                                                                                                                  
+BLKKE                                                                                                                                                                                                   
+CLKRK                                                                                                                                                                                                   
+SCOTT                                                                                                                                                                                                   
+KING                                                                                                                                                                                                    
+TURNER                                                                                                                                                                                                  
+KDKMS                                                                                                                                                                                                   
+JKMES                                                                                                                                                                                                   
+FORD                                                                                                                                                                                                    
+MILLER                                                                                                                                                                                                  
+
+14 rows selected.
+
+SQL> SELECT REPLACE('BANANA','A','C')
+  2  FROM DUAL;
+
+REPLAC                                                                                                                                                                                                  
+------                                                                                                                                                                                                  
+BCNCNC                                                                                                                                                                                                  
+
+SQL> SELECT REPLACE('BANANA','AN','1234')
+  2  FROM DUAL;
+
+REPLACE('B                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+B12341234A                                                                                                                                                                                              
+
+SQL> SELECT REPLACE('QSPIDERS','Q')
+  2  FROM DUAL;
+
+REPLACE                                                                                                                                                                                                 
+-------                                                                                                                                                                                                 
+SPIDERS                                                                                                                                                                                                 
+
+SQL> SELECT COUNT('BANANA','A');
+SELECT COUNT('BANANA','A')
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> SELECT COUNT(REPLACE('BANANA','A')
+  2  FROM DUAL;
+FROM DUAL
+*
+ERROR at line 2:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT COUNT('BANANA','A')
+  2  FROM DUAL;
+SELECT COUNT('BANANA','A')
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> SELECT COUNT(REPLACE('BANANA','A')
+  2  FROM DUAL;
+FROM DUAL
+*
+ERROR at line 2:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT COUNT(REPLACE('BANANA','A'))
+  2  FROM DUAL;
+
+COUNT(REPLACE('BANANA','A'))                                                                                                                                                                            
+----------------------------                                                                                                                                                                            
+                           1                                                                                                                                                                            
+
+SQL> SELECT REPLACE('BANANA','A')
+  2  FROM DUAL
+  3  ;
+
+REP                                                                                                                                                                                                     
+---                                                                                                                                                                                                     
+BNN                                                                                                                                                                                                     
+
+SQL> SELECT LENGHT(REPLACE('BANANA','A')
+  2  FROM DUAL;
+FROM DUAL
+*
+ERROR at line 2:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT LENGHT(REPLACE('BANANA','A'))
+  2  FROM DUAL;
+SELECT LENGHT(REPLACE('BANANA','A'))
+       *
+ERROR at line 1:
+ORA-00904: "LENGHT": invalid identifier 
+
+
+SQL> SELECT LENGTH(REPLACE('BANANA','A'))
+  2  FROM DUAL;
+
+LENGTH(REPLACE('BANANA','A'))                                                                                                                                                                           
+-----------------------------                                                                                                                                                                           
+                            3                                                                                                                                                                           
+
+SQL> SELECT LENGTH('BANANA') - LENGTH(REPLACE('BANANA','A') AS LEN
+  2  FROM DUAL;
+SELECT LENGTH('BANANA') - LENGTH(REPLACE('BANANA','A') AS LEN
+                                                       *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT SELECT LENGTH('BANANA') - LENGTH(REPLACE('BANANA','A')) AS LEN
+  2  FROM DUAL;
+SELECT SELECT LENGTH('BANANA') - LENGTH(REPLACE('BANANA','A')) AS LEN
+       *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT LENGTH('BANANA') - LENGTH(REPLACE('BANANA','A'))
+  2  FROM DUAL;
+
+LENGTH('BANANA')-LENGTH(REPLACE('BANANA','A'))                                                                                                                                                          
+----------------------------------------------                                                                                                                                                          
+                                             3                                                                                                                                                          
+
+SQL> SELECT LENGTH('MALAYALAM')-LENGTH(REPLACE('MALAYALAM','A'))
+  2  FROM DUAL;
+
+LENGTH('MALAYALAM')-LENGTH(REPLACE('MALAYALAM','A'))                                                                                                                                                    
+----------------------------------------------------                                                                                                                                                    
+                                                   4                                                                                                                                                    
+
+SQL> SELECT SUBSTR('HARSHAL',3,3)
+  2  FROM DUAL;
+
+SUB                                                                                                                                                                                                     
+---                                                                                                                                                                                                     
+RSH                                                                                                                                                                                                     
+
+SQL> SELECT SUBSTR('HARSHAL',1,3)
+  2  FROM DUAL;
+
+SUB                                                                                                                                                                                                     
+---                                                                                                                                                                                                     
+HAR                                                                                                                                                                                                     
+
+SQL> SELECT SUBSTR('HARSHAL',2,4)
+  2  FROM DUAL;
+
+SUBS                                                                                                                                                                                                    
+----                                                                                                                                                                                                    
+ARSH                                                                                                                                                                                                    
+
+SQL> SELECT SUBSTR('HARSHAL',4,4)
+  2  FROM DUAL;
+
+SUBS                                                                                                                                                                                                    
+----                                                                                                                                                                                                    
+SHAL                                                                                                                                                                                                    
+
+SQL> SELECT SUBSTR('HARSHAL',-1,4)
+  2  FROM DUAL;
+
+S                                                                                                                                                                                                       
+-                                                                                                                                                                                                       
+L                                                                                                                                                                                                       
+
+SQL> SELECT SUBSTR('HARSHAL',-1,-4)
+  2  FROM DUAL;
+
+S                                                                                                                                                                                                       
+-                                                                                                                                                                                                       
+                                                                                                                                                                                                        
+
+SQL> SELECT SUBSTR('HARSHAL','SHAL')
+  2  FROM DUAL;
+SELECT SUBSTR('HARSHAL','SHAL')
+                        *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> SELECT SUBSTR('HARSHAL',-1,4)
+  2  FROM DUAL;
+
+S                                                                                                                                                                                                       
+-                                                                                                                                                                                                       
+L                                                                                                                                                                                                       
+
+SQL> SELECT SUBSTR(ENAME,-4,4)
+  2  FROM EMP;
+
+SUBS                                                                                                                                                                                                    
+----                                                                                                                                                                                                    
+MITH                                                                                                                                                                                                    
+LLEN                                                                                                                                                                                                    
+WARD                                                                                                                                                                                                    
+ONES                                                                                                                                                                                                    
+RTIN                                                                                                                                                                                                    
+LAKE                                                                                                                                                                                                    
+LARK                                                                                                                                                                                                    
+COTT                                                                                                                                                                                                    
+KING                                                                                                                                                                                                    
+RNER                                                                                                                                                                                                    
+DAMS                                                                                                                                                                                                    
+AMES                                                                                                                                                                                                    
+FORD                                                                                                                                                                                                    
+LLER                                                                                                                                                                                                    
+
+14 rows selected.
+
+SQL> SELECT SUBSTR(ENAME,LENGTH(ENAME)/2)
+  2  FROM EMP;
+
+SUBSTR(ENA                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+MITH                                                                                                                                                                                                    
+LLEN                                                                                                                                                                                                    
+ARD                                                                                                                                                                                                     
+ONES                                                                                                                                                                                                    
+RTIN                                                                                                                                                                                                    
+LAKE                                                                                                                                                                                                    
+LARK                                                                                                                                                                                                    
+COTT                                                                                                                                                                                                    
+ING                                                                                                                                                                                                     
+RNER                                                                                                                                                                                                    
+DAMS                                                                                                                                                                                                    
+AMES                                                                                                                                                                                                    
+ORD                                                                                                                                                                                                     
+LLER                                                                                                                                                                                                    
+
+14 rows selected.
+
+SQL> SELECT SUBSTR(ENAME,1,LENGTH(ENAME)/2)
+  2  FROM EMP;
+
+SUBSTR(ENA                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+SM                                                                                                                                                                                                      
+AL                                                                                                                                                                                                      
+WA                                                                                                                                                                                                      
+JO                                                                                                                                                                                                      
+MAR                                                                                                                                                                                                     
+BL                                                                                                                                                                                                      
+CL                                                                                                                                                                                                      
+SC                                                                                                                                                                                                      
+KI                                                                                                                                                                                                      
+TUR                                                                                                                                                                                                     
+AD                                                                                                                                                                                                      
+JA                                                                                                                                                                                                      
+FO                                                                                                                                                                                                      
+MIL                                                                                                                                                                                                     
+
+14 rows selected.
+
+SQL> SELECT SUBSTR(ENAME,LENGTH(ENAME)/2)
+  2  FROM EMP;
+
+SUBSTR(ENA                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+MITH                                                                                                                                                                                                    
+LLEN                                                                                                                                                                                                    
+ARD                                                                                                                                                                                                     
+ONES                                                                                                                                                                                                    
+RTIN                                                                                                                                                                                                    
+LAKE                                                                                                                                                                                                    
+LARK                                                                                                                                                                                                    
+COTT                                                                                                                                                                                                    
+ING                                                                                                                                                                                                     
+RNER                                                                                                                                                                                                    
+DAMS                                                                                                                                                                                                    
+AMES                                                                                                                                                                                                    
+ORD                                                                                                                                                                                                     
+LLER                                                                                                                                                                                                    
+
+14 rows selected.
+
+SQL> SELECT SUBSTR(ENAME,LENGTH(ENAME)-LENGTH(ENAME)/2)
+  2  FROM EMP;
+
+SUBSTR(ENA                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+MITH                                                                                                                                                                                                    
+LLEN                                                                                                                                                                                                    
+ARD                                                                                                                                                                                                     
+ONES                                                                                                                                                                                                    
+RTIN                                                                                                                                                                                                    
+LAKE                                                                                                                                                                                                    
+LARK                                                                                                                                                                                                    
+COTT                                                                                                                                                                                                    
+ING                                                                                                                                                                                                     
+RNER                                                                                                                                                                                                    
+DAMS                                                                                                                                                                                                    
+AMES                                                                                                                                                                                                    
+ORD                                                                                                                                                                                                     
+LLER                                                                                                                                                                                                    
+
+14 rows selected.
+
+
+SQL> SELECT SUBSTR(ENAME,LENGTH(ENAME)/2+1)
+  2  FROM EMP;
+
+SUBSTR(ENA                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+ITH                                                                                                                                                                                                     
+LEN                                                                                                                                                                                                     
+RD                                                                                                                                                                                                      
+NES                                                                                                                                                                                                     
+TIN                                                                                                                                                                                                     
+AKE                                                                                                                                                                                                     
+ARK                                                                                                                                                                                                     
+OTT                                                                                                                                                                                                     
+NG                                                                                                                                                                                                      
+NER                                                                                                                                                                                                     
+AMS                                                                                                                                                                                                     
+MES                                                                                                                                                                                                     
+RD                                                                                                                                                                                                      
+LER                                                                                                                                                                                                     
+
+14 rows selected.
+
+
+SQL> SELECT CONCAT(
+  2   LOWER(SUBSTR(ENAME,1,LENGTH(ENAME)/2)) , REVERSE(SUBSTR(ENAME,LENGTH(ENAME)/2+1)))
+  3  FROM EMP;
+
+CONCAT(LOWER(SUBSTR(                                                                                                                                                                                    
+--------------------                                                                                                                                                                                    
+smHTI                                                                                                                                                                                                   
+alNEL                                                                                                                                                                                                   
+waDR                                                                                                                                                                                                    
+joSEN                                                                                                                                                                                                   
+marNIT                                                                                                                                                                                                  
+blEKA                                                                                                                                                                                                   
+clKRA                                                                                                                                                                                                   
+scTTO                                                                                                                                                                                                   
+kiGN                                                                                                                                                                                                    
+turREN                                                                                                                                                                                                  
+adSMA                                                                                                                                                                                                   
+jaSEM                                                                                                                                                                                                   
+foDR                                                                                                                                                                                                    
+milREL                                                                                                                                                                                                  
+
+14 rows selected.
+
+SQL> SELECT CONCAT(REVERSE(SUBSTR(ENAME,1,4)),REVERSE(LOWER(SUBSTR(ENAME,4)))
+  2  FROM EMP;
+FROM EMP
+*
+ERROR at line 2:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT CONCAT(REVERSE(SUBSTR(ENAME,1,4)),REVERSE(LOWER(SUBSTR(ENAME,4))))
+  2  FROM EMP;
+
+CONCAT(REVE                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+TIMSht                                                                                                                                                                                                  
+ELLAne                                                                                                                                                                                                  
+DRAWd                                                                                                                                                                                                   
+ENOJse                                                                                                                                                                                                  
+TRAMnit                                                                                                                                                                                                 
+KALBek                                                                                                                                                                                                  
+RALCkr                                                                                                                                                                                                  
+TOCStt                                                                                                                                                                                                  
+GNIKg                                                                                                                                                                                                   
+NRUTren                                                                                                                                                                                                 
+MADAsm                                                                                                                                                                                                  
+EMAJse                                                                                                                                                                                                  
+DROFd                                                                                                                                                                                                   
+LLIMrel                                                                                                                                                                                                 
+
+14 rows selected.
+
+SQL> SPOOL OFF;

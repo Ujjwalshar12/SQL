@@ -1,0 +1,79 @@
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE LENGTH(ENAME)=4;
+
+ENAME                                                                                                                                                                                                   
+----------                                                                                                                                                                                              
+WARD                                                                                                                                                                                                    
+KING                                                                                                                                                                                                    
+FORD                                                                                                                                                                                                    
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE LENGTH(ENAME)=7;
+
+no rows selected
+
+SQL> SELECT LENGTH('QSPIDERS')-LENGTH(REPLACE('QSPIDERS','S'))
+  2  FROM DUAL;
+
+LENGTH('QSPIDERS')-LENGTH(REPLACE('QSPIDERS','S'))                                                                                                                                                      
+--------------------------------------------------                                                                                                                                                      
+                                                 2                                                                                                                                                      
+
+SQL>  SELECT ENAME
+  2   FROM EMP
+  3   WHERE SUBSTR(JOB,-3) = 'MAN';
+
+ENAME                                                                                                                                                                                                   
+----------                                                                                                                                                                                              
+ALLEN                                                                                                                                                                                                   
+WARD                                                                                                                                                                                                    
+MARTIN                                                                                                                                                                                                  
+TURNER                                                                                                                                                                                                  
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE LENGTH(ENAME)-LENGTH(REPLACE(ENAME,'L'))=1;
+
+ENAME                                                                                                                                                                                                   
+----------                                                                                                                                                                                              
+BLAKE                                                                                                                                                                                                   
+CLARK                                                                                                                                                                                                   
+
+SQL> SELECT DNAME
+  2  FROM DEPT
+  3  WHERE SUBSTR(DNAME,'O') IS NOT NULL;
+WHERE SUBSTR(DNAME,'O') IS NOT NULL
+                   *
+ERROR at line 3:
+ORA-01722: invalid number 
+
+
+SQL> SELECT DNAME
+  2  FROM DEPT
+  3  WHERE SUBSTR(DNAME) IN 'O';
+WHERE SUBSTR(DNAME) IN 'O'
+      *
+ERROR at line 3:
+ORA-00938: not enough arguments for function 
+
+
+SQL> SELECT LENGTH('HELLLLL') - LENGTH(REPLACE('HELLLLL','L'))
+  2  FROM DEPT ;
+
+LENGTH('HELLLLL')-LENGTH(REPLACE('HELLLLL','L'))                                                                                                                                                        
+------------------------------------------------                                                                                                                                                        
+                                               5                                                                                                                                                        
+                                               5                                                                                                                                                        
+                                               5                                                                                                                                                        
+                                               5                                                                                                                                                        
+
+SQL> SELECT  LENGTH('HELLLLL') - LENGTH(REPLACE('HELLLLL','L'))
+  2  FROM DUAL;
+
+LENGTH('HELLLLL')-LENGTH(REPLACE('HELLLLL','L'))                                                                                                                                                        
+------------------------------------------------                                                                                                                                                        
+                                               5                                                                                                                                                        
+
+SQL> SPOOL OFF;
