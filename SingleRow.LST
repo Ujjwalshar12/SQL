@@ -1,16 +1,16 @@
-SQL> SELECT LOWER('KANUPRIYA SATI')
+SQL> SELECT LOWER('Ujjwal Sharma')
   2  FROM DUAL;
 
-LOWER('KANUPRI                                                                                                                                                                                          
+LOWER('Ujjwal Sharma                                                                                                                                                                                         
 --------------                                                                                                                                                                                          
-kanupriya sati                                                                                                                                                                                          
+Ujjwal Sharma                                                                                                                                                                                          
 
-SQL> SELECT UPPER('kanupriya')
+SQL> SELECT UPPER('Ujjwal Sharma')
   2  from dual;
 
 UPPER('KA                                                                                                                                                                                               
 ---------                                                                                                                                                                                               
-KANUPRIYA                                                                                                                                                                                               
+Ujjwal sharma                                                                                                                                                                                               
 
 SQL> SELECT LOWER(ENAME)
   2  FROM EMP;
@@ -34,12 +34,12 @@ miller
 
 14 rows selected.
 
-SQL> SELECT INITCAP('KANUPRIYA SATI')
+SQL> SELECT INITCAP('ujjwal Sharma')
   2  FROM DUAL;
 
 INITCAP('KANUP                                                                                                                                                                                          
 --------------                                                                                                                                                                                          
-Kanupriya Sati                                                                                                                                                                                          
+Ujjwal Sharma                                                                                                                                                                                          
 
 SQL> SELECT INITCAP(ENAME)
   2  FROM EMP;
