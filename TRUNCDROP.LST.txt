@@ -1,0 +1,139 @@
+SQL> SET LINES 200 PAGES 200;
+SQL> TRUNCATE TABLE STUDENT_TABLE;
+TRUNCATE TABLE STUDENT_TABLE
+               *
+ERROR at line 1:
+ORA-02266: unique/primary keys in table referenced by enabled foreign keys 
+
+
+SQL> SELECT *
+  2  FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                                                                                                                                                       
+------------------------------ ------- ----------                                                                                                                                                       
+DEPT                           TABLE                                                                                                                                                                    
+EMP                            TABLE                                                                                                                                                                    
+BONUS                          TABLE                                                                                                                                                                    
+SALGRADE                       TABLE                                                                                                                                                                    
+ACCOUNTS                       TABLE                                                                                                                                                                    
+COFFEE                         TABLE                                                                                                                                                                    
+TEACHER                        TABLE                                                                                                                                                                    
+STUDENT_TABLE                  TABLE                                                                                                                                                                    
+PIZZA                          TABLE                                                                                                                                                                    
+PIZZAS                         TABLE                                                                                                                                                                    
+QSPIDERS                       TABLE                                                                                                                                                                    
+SESSIONS                       TABLE                                                                                                                                                                    
+
+12 rows selected.
+
+SQL> TRUNCATE TABLE PIZZA;
+
+Table truncated.
+
+SQL> SELECT *
+  2  FROM PIZZA;
+
+no rows selected
+
+SQL> DESC PIZZA;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ ORDERID                                                                                                           NOT NULL NUMBER(5)
+ PNAME                                                                                                             NOT NULL VARCHAR2(20)
+ TOPPINGS                                                                                                                   VARCHAR2(20)
+ SIZES                                                                                                             NOT NULL VARCHAR2(2)
+ PRICE                                                                                                                      NUMBER(5)
+
+SQL> DROP TABLE PIZZA;
+
+Table dropped.
+
+SQL> FLASHBACK TABLE PIZZA
+  2  TO BEFORE DROP;
+
+Flashback complete.
+
+SQL> DROP TABLE PIZZA;
+
+Table dropped.
+
+SQL> SELECT *
+  2  FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                                                                                                                                                       
+------------------------------ ------- ----------                                                                                                                                                       
+DEPT                           TABLE                                                                                                                                                                    
+EMP                            TABLE                                                                                                                                                                    
+BONUS                          TABLE                                                                                                                                                                    
+SALGRADE                       TABLE                                                                                                                                                                    
+BIN$sNHSDoDzQrWF5vhoyzYEbQ==$0 TABLE                                                                                                                                                                    
+ACCOUNTS                       TABLE                                                                                                                                                                    
+COFFEE                         TABLE                                                                                                                                                                    
+TEACHER                        TABLE                                                                                                                                                                    
+STUDENT_TABLE                  TABLE                                                                                                                                                                    
+PIZZAS                         TABLE                                                                                                                                                                    
+QSPIDERS                       TABLE                                                                                                                                                                    
+SESSIONS                       TABLE                                                                                                                                                                    
+
+12 rows selected.
+
+SQL> FLASHBACK TABLE PIZZA
+  2  TO BEFORE DROP;
+
+Flashback complete.
+
+SQL> SELECT *
+  2  FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                                                                                                                                                       
+------------------------------ ------- ----------                                                                                                                                                       
+DEPT                           TABLE                                                                                                                                                                    
+EMP                            TABLE                                                                                                                                                                    
+BONUS                          TABLE                                                                                                                                                                    
+SALGRADE                       TABLE                                                                                                                                                                    
+PIZZA                          TABLE                                                                                                                                                                    
+ACCOUNTS                       TABLE                                                                                                                                                                    
+COFFEE                         TABLE                                                                                                                                                                    
+TEACHER                        TABLE                                                                                                                                                                    
+STUDENT_TABLE                  TABLE                                                                                                                                                                    
+PIZZAS                         TABLE                                                                                                                                                                    
+QSPIDERS                       TABLE                                                                                                                                                                    
+SESSIONS                       TABLE                                                                                                                                                                    
+
+12 rows selected.
+
+SQL> DESC STUDENT_TABLE;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ SID                                                                                                               NOT NULL NUMBER(5)
+ SNAME                                                                                                             NOT NULL VARCHAR2(20)
+ PHONENO                                                                                                                    NUMBER(10)
+ AGE                                                                                                                        NUMBER(2)
+ ROLLNO                                                                                                            NOT NULL VARCHAR2(10)
+ ADHAR_NO                                                                                                                   NUMBER(5)
+
+SQL> INSERT INTO STUDENT_TABLE
+  2  VALUES (12345,'Kanupriya',7895872411,21,2000501020,56789);
+
+1 row created.
+
+SQL> select *
+  2  ;
+
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT * FROM STUDENT_TABLE;
+
+       SID SNAME                   PHONENO        AGE ROLLNO       ADHAR_NO                                                                                                                             
+---------- -------------------- ---------- ---------- ---------- ----------                                                                                                                             
+     12345 Kanupriya            7895872411         21 2000501020      56789                                                                                                                             
+
+SQL> INSERT INTO STUDENT_TABLE
+  2  VALUES(23456,'MANTASHA',7835477391,22,6452892735,67890);
+
+1 row created.
+
+SQL> SPOOL OFF;

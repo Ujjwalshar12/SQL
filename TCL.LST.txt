@@ -1,0 +1,87 @@
+SQL> SET LINES 200 PAGES 200;
+SQL> COMMIT ;
+
+Commit complete.
+
+SQL> TRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR;
+SP2-0734: unknown command beginning "TRRRRRRRRR..." - rest of line ignored.
+SQL> ROLLBACK ;
+
+Rollback complete.
+
+SQL> INSERT INTO STUDENT_TABLE
+  2  VALUES(65277,'AMAN',6356253728,21,8262526177,82671);
+
+1 row created.
+
+SQL> SELECT * FROM STUDENT_TABLE;
+
+       SID SNAME                   PHONENO        AGE ROLLNO       ADHAR_NO                                                                                                                             
+---------- -------------------- ---------- ---------- ---------- ----------                                                                                                                             
+     12345 Kanupriya            7895872411         21 2000501020      56789                                                                                                                             
+     23456 MANTASHA             7835477391         22 6452892735      67890                                                                                                                             
+     34567 SEEMA                9873527547         22 8363352456      73539                                                                                                                             
+     45678 NEHA                 8753268747            7653257853      76433                                                                                                                             
+     56789 VIKASH               7252786256         22 7653298765      98764                                                                                                                             
+     67890 TASAVVAR                                   7654322876                                                                                                                                        
+     78901 SEBI                 7654328960         23 7652829638      87629                                                                                                                             
+     65277 AMAN                 6356253728         21 8262526177      82671                                                                                                                             
+
+8 rows selected.
+
+SQL> ROLLBACK;
+
+Rollback complete.
+
+SQL> SELECT * FROM STUDENT_TABLE;
+
+       SID SNAME                   PHONENO        AGE ROLLNO       ADHAR_NO                                                                                                                             
+---------- -------------------- ---------- ---------- ---------- ----------                                                                                                                             
+     12345 Kanupriya            7895872411         21 2000501020      56789                                                                                                                             
+     23456 MANTASHA             7835477391         22 6452892735      67890                                                                                                                             
+     34567 SEEMA                9873527547         22 8363352456      73539                                                                                                                             
+     45678 NEHA                 8753268747            7653257853      76433                                                                                                                             
+     56789 VIKASH               7252786256         22 7653298765      98764                                                                                                                             
+     67890 TASAVVAR                                   7654322876                                                                                                                                        
+     78901 SEBI                 7654328960         23 7652829638      87629                                                                                                                             
+
+7 rows selected.
+
+SQL> INSERT INTO STUDENT_TABLE
+  2  VALUES (63456,'KABIR',7363829276,21,3627281924,78263);
+
+1 row created.
+
+SQL> SAVEPOINT S1;
+
+Savepoint created.
+
+SQL> SELECT * FROM STUDENT_STUDENT ;
+SELECT * FROM STUDENT_STUDENT 
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECY * FROM STUDENT_TABLE;
+SP2-0734: unknown command beginning "SELECY * F..." - rest of line ignored.
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STUDENT_TABLE
+SQL> /
+
+       SID SNAME                   PHONENO        AGE ROLLNO       ADHAR_NO                                                                                                                             
+---------- -------------------- ---------- ---------- ---------- ----------                                                                                                                             
+     12345 Kanupriya            7895872411         21 2000501020      56789                                                                                                                             
+     23456 MANTASHA             7835477391         22 6452892735      67890                                                                                                                             
+     34567 SEEMA                9873527547         22 8363352456      73539                                                                                                                             
+     45678 NEHA                 8753268747            7653257853      76433                                                                                                                             
+     56789 VIKASH               7252786256         22 7653298765      98764                                                                                                                             
+     67890 TASAVVAR                                   7654322876                                                                                                                                        
+     78901 SEBI                 7654328960         23 7652829638      87629                                                                                                                             
+     63456 KABIR                7363829276         21 3627281924      78263                                                                                                                             
+
+8 rows selected.
+
+SQL> SPOOL OFF;

@@ -1,0 +1,188 @@
+SQL> SET LINES 200 PAGES 200;
+SQL> CREATE TABLE OFFICE_INFO
+  2  (OFFICE_ID NUMBER(2) CHECK(LENGTH(OFFICE_ID)>0) CHECK(LENGTH(OFFICE_ID)<=2) PRIMARY KEY,
+  3   LOCATION VARCHAR(15) NOT NULL,
+  4   PHONENO NUMBER(10) CHECK(LENGTH(PHONENO)=10) UNIQUE);
+
+Table created.
+
+SQL> DROP TABLE CONTACT_INFORMATION;
+
+Table dropped.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO OFFICE_INFORMATION
+  2  (OFFICE_ID , LOCATION , PHONENO)
+  3  VALUES
+  4* (1,'DELHI',1234567890)
+SQL> /
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO OFFICE_INFO
+  2  (OFFICE_ID , LOCATION , PHONENO)
+  3  VALUES
+  4* (1,'DELHI',1234567890)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO OFFICE_INFO
+  2  (OFFICE_ID , LOCATION , PHONENO)
+  3  VALUES
+  4* (2,'MUMBAI',2345678901)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO OFFICE_INFO
+  2  (OFFICE_ID , LOCATION , PHONENO)
+  3  VALUES
+  4* (3,'BANGALORE',3456789012)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO OFFICE_INFO
+  2  (OFFICE_ID , LOCATION , PHONENO)
+  3  VALUES
+  4* (4,'CHENNAI',4567890123)
+SQL> /
+
+1 row created.
+
+SQL> SELECT *
+  2  FROM OFFICE_INFO;
+
+ OFFICE_ID LOCATION           PHONENO                                                                                                                                                                   
+---------- --------------- ----------                                                                                                                                                                   
+         1 DELHI           1234567890                                                                                                                                                                   
+         2 MUMBAI          2345678901                                                                                                                                                                   
+         3 BANGALORE       3456789012                                                                                                                                                                   
+         4 CHENNAI         4567890123                                                                                                                                                                   
+
+SQL> CREATE TABLE EMP_INFO
+  2  (EMP_ID VARCHAR(10) PRIMARY KEY ,
+  3   NAME VARCHAR(15) NOT NULL,
+  4   ROLE VARCHAR(10) NOT NULL,
+  5   OFFICE_ID NUMBER(2) CHECK(LENGTH(OFFICE_ID)>0) CHECK(LENGTH(OFFICE_ID)<=2) PRIMARY KEY);
+ OFFICE_ID NUMBER(2) CHECK(LENGTH(OFFICE_ID)>0) CHECK(LENGTH(OFFICE_ID)<=2) PRIMARY KEY)
+                                                                            *
+ERROR at line 5:
+ORA-02260: table can have only one primary key 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  CREATE TABLE EMP_INFO
+  2  (EMP_ID VARCHAR(10) PRIMARY KEY ,
+  3   NAME VARCHAR(15) NOT NULL,
+  4   ROLE VARCHAR(10) NOT NULL,
+  5*  OFFICE_ID NUMBER(2) CHECK(LENGTH(OFFICE_ID)>0) CHECK(LENGTH(OFFICE_ID)<=2) )
+SQL> /
+
+Table created.
+
+SQL> INSERT INTO EMP_INFO
+  2  (EMP_ID , NAME,ROLE,OFFICE_ID)
+  3  VALUES
+  4  ('VIJA101','VIJAY VERMA','MANAGER',1);
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO EMP_INFO
+  2  (EMP_ID , NAME,ROLE,OFFICE_ID)
+  3  VALUES
+  4* ('DIYA102','DIYA GUPTA','CLERK',2)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO EMP_INFO
+  2  (EMP_ID , NAME,ROLE,OFFICE_ID)
+  3  VALUES
+  4* ('PRAB103','Prabakaran Singh','CARRIER',1)
+SQL> /
+('PRAB103','Prabakaran Singh','CARRIER',1)
+           *
+ERROR at line 4:
+ORA-12899: value too large for column "SCOTT"."EMP_INFO"."NAME" (actual: 16, maximum: 15) 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO EMP_INFO
+  2  (EMP_ID , NAME,ROLE,OFFICE_ID)
+  3  VALUES
+  4* ('PRAB103','Prabakaran','CARRIER',1)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO EMP_INFO
+  2  (EMP_ID , NAME,ROLE,OFFICE_ID)
+  3  VALUES
+  4* ('ANAB104','ANANYA','CLERK',3)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO EMP_INFO
+  2  (EMP_ID , NAME,ROLE,OFFICE_ID)
+  3  VALUES
+  4* ('KAB107','KABIR KAPOOR','CLERK',4)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO EMP_INFO
+  2  (EMP_ID , NAME,ROLE,OFFICE_ID)
+  3  VALUES
+  4* ('VIJI105','VIJAY VERMA','CARRIER',3)
+SQL> /
+
+1 row created.
+
+SQL> SELECT * FROM EMP_INFO;
+
+EMP_ID     NAME            ROLE        OFFICE_ID                                                                                                                                                        
+---------- --------------- ---------- ----------                                                                                                                                                        
+VIJA101    VIJAY VERMA     MANAGER             1                                                                                                                                                        
+DIYA102    DIYA GUPTA      CLERK               2                                                                                                                                                        
+PRAB103    Prabakaran      CARRIER             1                                                                                                                                                        
+ANAB104    ANANYA          CLERK               3                                                                                                                                                        
+KAB107     KABIR KAPOOR    CLERK               4                                                                                                                                                        
+VIJI105    VIJAY VERMA     CARRIER             3                                                                                                                                                        
+
+6 rows selected.
+
+SQL> SPOOL OFF;

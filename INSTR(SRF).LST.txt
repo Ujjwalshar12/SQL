@@ -1,0 +1,401 @@
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE INSTR(ENAME,'A') IS NOT NULL;
+
+ENAME                                                                                                                                                                                                   
+----------                                                                                                                                                                                              
+SMITH                                                                                                                                                                                                   
+ALLEN                                                                                                                                                                                                   
+WARD                                                                                                                                                                                                    
+JONES                                                                                                                                                                                                   
+MARTIN                                                                                                                                                                                                  
+BLAKE                                                                                                                                                                                                   
+CLARK                                                                                                                                                                                                   
+SCOTT                                                                                                                                                                                                   
+KING                                                                                                                                                                                                    
+TURNER                                                                                                                                                                                                  
+ADAMS                                                                                                                                                                                                   
+JAMES                                                                                                                                                                                                   
+FORD                                                                                                                                                                                                    
+MILLER                                                                                                                                                                                                  
+
+14 rows selected.
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE INSTR(ENAME,'A') !=0;
+
+ENAME                                                                                                                                                                                                   
+----------                                                                                                                                                                                              
+ALLEN                                                                                                                                                                                                   
+WARD                                                                                                                                                                                                    
+MARTIN                                                                                                                                                                                                  
+BLAKE                                                                                                                                                                                                   
+CLARK                                                                                                                                                                                                   
+ADAMS                                                                                                                                                                                                   
+JAMES                                                                                                                                                                                                   
+
+7 rows selected.
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE INSTR(ENAME ,'A',1) = 2;
+
+ENAME                                                                                                                                                                                                   
+----------                                                                                                                                                                                              
+WARD                                                                                                                                                                                                    
+MARTIN                                                                                                                                                                                                  
+JAMES                                                                                                                                                                                                   
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE INSTR(ENAME,'A',1,2);
+WHERE INSTR(ENAME,'A',1,2)
+                         *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE INSTR(ENAME,'A',1,2) !=0;
+
+ENAME                                                                                                                                                                                                   
+----------                                                                                                                                                                                              
+ADAMS                                                                                                                                                                                                   
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE INSTR(ENAME,'LL',1) !=0;
+
+ENAME                                                                                                                                                                                                   
+----------                                                                                                                                                                                              
+ALLEN                                                                                                                                                                                                   
+MILLER                                                                                                                                                                                                  
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE INSTR(ENAME,'A',1,2) ==2;
+WHERE INSTR(ENAME,'A',1,2) ==2
+                            *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL>  SELECT ENAME
+  2   FROM EMP
+  3   WHERE INSTR(ENAME,'A',1,2) = 2;
+
+no rows selected
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE INSTR(ENAME,'A',1,2) > 1;
+
+ENAME                                                                                                                                                                                                   
+----------                                                                                                                                                                                              
+ADAMS                                                                                                                                                                                                   
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE INSTR(ENAME,'A',1,2) >=1;
+
+ENAME                                                                                                                                                                                                   
+----------                                                                                                                                                                                              
+ADAMS                                                                                                                                                                                                   
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE INSTR(ENAME,'A',1,3) >0;
+
+no rows selected
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE INSTR(ENAME,'A',1,2)>0 AND INSTR(ENAME,'A',1,3) =0;
+
+ENAME                                                                                                                                                                                                   
+----------                                                                                                                                                                                              
+ADAMS                                                                                                                                                                                                   
+
+SQL> INSERT INTO
+  2  ENAME
+  3  VALUE 'AAKASH';
+VALUE 'AAKASH'
+      *
+ERROR at line 3:
+ORA-00926: missing VALUES keyword 
+
+
+SQL> INSERT INTO EMP
+  2  ENAME
+  3  VALUE 'AAKASH';
+VALUE 'AAKASH'
+*
+ERROR at line 3:
+ORA-00926: missing VALUES keyword 
+
+
+SQL> INSERT INTO EMP
+  2  ENAME
+  3  VALUES 'AAKASH';
+VALUES 'AAKASH'
+       *
+ERROR at line 3:
+ORA-03001: unimplemented feature 
+
+
+SQL> INSERT INTO EMP
+  2  ENAME , EMPNO
+  3  ;
+ENAME , EMPNO
+      *
+ERROR at line 2:
+ORA-00926: missing VALUES keyword 
+
+
+SQL> INSERT INTO EMP
+  2  (EMPNO,ENAME)
+  3  VALUES
+  4  ('AAKASH',7554);
+('AAKASH',7554)
+ *
+ERROR at line 4:
+ORA-01722: invalid number 
+
+
+SQL> INSERT INTO EMP
+  2  (EMPNO,ENAME)
+  3  VALUES
+  4  (7554,'AAKASH');
+
+1 row created.
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE INSTR(ENAME,'A',1,2)>0 AND INSTR(ENAME,'A',1,3) =0;
+
+ENAME                                                                                                                                                                                                   
+----------                                                                                                                                                                                              
+ADAMS                                                                                                                                                                                                   
+
+SQL> SELECT *
+  2  FROM EMP
+  3  ;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO                                                                                                                   
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------                                                                                                                   
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20                                                                                                                   
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30                                                                                                                   
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30                                                                                                                   
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20                                                                                                                   
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30                                                                                                                   
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30                                                                                                                   
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10                                                                                                                   
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20                                                                                                                   
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10                                                                                                                   
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30                                                                                                                   
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20                                                                                                                   
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30                                                                                                                   
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20                                                                                                                   
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10                                                                                                                   
+      7554 AAKASH                                                                                                                                                                                       
+
+15 rows selected.
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE INSTR(ENAME,'A',1,2)>0 AND INSTR(ENAME,'A',1,3) =0;
+
+ENAME                                                                                                                                                                                                   
+----------                                                                                                                                                                                              
+ADAMS                                                                                                                                                                                                   
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE INSTR(ENAME,'A',1,2)>0 AND INSTR(ENAME,'A',1,4)=0;
+
+ENAME                                                                                                                                                                                                   
+----------                                                                                                                                                                                              
+ADAMS                                                                                                                                                                                                   
+AAKASH                                                                                                                                                                                                  
+
+SQL> SELECT SAL
+  2  FROM EMP
+  3  WHERE MOD(SAL,2)=1;
+
+       SAL                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+      2975                                                                                                                                                                                              
+
+SQL> SELECT EMPNO
+  2  FROM EMP
+  3  WHERE MOD(EMPNO,2)=0;
+
+     EMPNO                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+      7554                                                                                                                                                                                              
+      7566                                                                                                                                                                                              
+      7654                                                                                                                                                                                              
+      7698                                                                                                                                                                                              
+      7782                                                                                                                                                                                              
+      7788                                                                                                                                                                                              
+      7844                                                                                                                                                                                              
+      7876                                                                                                                                                                                              
+      7900                                                                                                                                                                                              
+      7902                                                                                                                                                                                              
+      7934                                                                                                                                                                                              
+
+11 rows selected.
+
+SQL> SELECT SYSDATE
+  2  FROM DUAL;
+
+SYSDATE                                                                                                                                                                                                 
+---------                                                                                                                                                                                               
+16-JUL-24                                                                                                                                                                                               
+
+SQL> SELECT CURRENT_DATE
+  2  FROM DUAL;
+
+CURRENT_D                                                                                                                                                                                               
+---------                                                                                                                                                                                               
+16-JUL-24                                                                                                                                                                                               
+
+SQL> SELECT SYSTIMESTAMP
+  2  FROM DUAL;
+
+SYSTIMESTAMP                                                                                                                                                                                            
+---------------------------------------------------------------------------                                                                                                                             
+16-JUL-24 12.46.27.496000 PM +05:30                                                                                                                                                                     
+
+SQL> SELECT SYSDATE
+  2  FROM DUAL;
+
+SYSDATE                                                                                                                                                                                                 
+---------                                                                                                                                                                                               
+18-JUL-24                                                                                                                                                                                               
+
+SQL> SELECT CURRENT_DATER
+  2  ;
+
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT CURRENT_DATE
+  2  FROM DUAL;
+
+CURRENT_D                                                                                                                                                                                               
+---------                                                                                                                                                                                               
+18-JUL-24                                                                                                                                                                                               
+
+SQL> SELECT MONTHS_BETWEEN('16-JUL-23','14-FEB-24');
+SELECT MONTHS_BETWEEN('16-JUL-23','14-FEB-24')
+                                             *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT MONTHS_BETWEEN('16-JUL-24','14-FEB-23')
+  2  FROM DUAL;
+
+MONTHS_BETWEEN('16-JUL-24','14-FEB-23')                                                                                                                                                                 
+---------------------------------------                                                                                                                                                                 
+                             17.0645161                                                                                                                                                                 
+
+SQL> SELECT MONTHS_BETWEEN(HIREDATE)
+  2  FROM EMP;
+SELECT MONTHS_BETWEEN(HIREDATE)
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> SELECT MONTHS_BETWEEN('16-JUL-24',HIREDATE)
+  2  FROM EMP;
+
+MONTHS_BETWEEN('16-JUL-24',HIREDATE)                                                                                                                                                                    
+------------------------------------                                                                                                                                                                    
+                          522.967742                                                                                                                                                                    
+                          520.870968                                                                                                                                                                    
+                          520.806452                                                                                                                                                                    
+                          519.451613                                                                                                                                                                    
+                          513.612903                                                                                                                                                                    
+                          518.483871                                                                                                                                                                    
+                          517.225806                                                                                                                                                                    
+                          446.903226                                                                                                                                                                    
+                          511.967742                                                                                                                                                                    
+                          514.258065                                                                                                                                                                    
+                          445.774194                                                                                                                                                                    
+                          511.419355                                                                                                                                                                    
+                          511.419355                                                                                                                                                                    
+                          509.774194                                                                                                                                                                    
+                                                                                                                                                                                                        
+
+15 rows selected.
+
+SQL> SELECT ROUND(MONTHS_BETWEEN(CURRENT_DATE,HIREDATE))
+  2  FROM EMP;
+
+ROUND(MONTHS_BETWEEN(CURRENT_DATE,HIREDATE))                                                                                                                                                            
+--------------------------------------------                                                                                                                                                            
+                                         523                                                                                                                                                            
+                                         521                                                                                                                                                            
+                                         521                                                                                                                                                            
+                                         519                                                                                                                                                            
+                                         514                                                                                                                                                            
+                                         519                                                                                                                                                            
+                                         517                                                                                                                                                            
+                                         447                                                                                                                                                            
+                                         512                                                                                                                                                            
+                                         514                                                                                                                                                            
+                                         446                                                                                                                                                            
+                                         511                                                                                                                                                            
+                                         511                                                                                                                                                            
+                                         510                                                                                                                                                            
+                                                                                                                                                                                                        
+
+15 rows selected.
+
+SQL> SELECT ROUND(YEAR_BETWEEN(CURRENT_DATE,HIREDATE))
+  2  FROM EMP;
+SELECT ROUND(YEAR_BETWEEN(CURRENT_DATE,HIREDATE))
+             *
+ERROR at line 1:
+ORA-00904: "YEAR_BETWEEN": invalid identifier 
+
+
+SQL> SELECT ROUND(YEARS_BETWEEN(CURRENT_DATE,HIREDATE))
+  2  FROM EMP;
+SELECT ROUND(YEARS_BETWEEN(CURRENT_DATE,HIREDATE))
+             *
+ERROR at line 1:
+ORA-00904: "YEARS_BETWEEN": invalid identifier 
+
+
+SQL>  SELECT ROUND(MONTHS_BETWEEN(CURRENT_DATE,HIREDATE)/12)
+  2  FROM EMP;
+
+ROUND(MONTHS_BETWEEN(CURRENT_DATE,HIREDATE)/12)                                                                                                                                                         
+-----------------------------------------------                                                                                                                                                         
+                                             44                                                                                                                                                         
+                                             43                                                                                                                                                         
+                                             43                                                                                                                                                         
+                                             43                                                                                                                                                         
+                                             43                                                                                                                                                         
+                                             43                                                                                                                                                         
+                                             43                                                                                                                                                         
+                                             37                                                                                                                                                         
+                                             43                                                                                                                                                         
+                                             43                                                                                                                                                         
+                                             37                                                                                                                                                         
+                                             43                                                                                                                                                         
+                                             43                                                                                                                                                         
+                                             42                                                                                                                                                         
+                                                                                                                                                                                                        
+
+15 rows selected.
+
+SQL> SPOOL OFF;

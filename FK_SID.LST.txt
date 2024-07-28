@@ -1,0 +1,22 @@
+CREATE TABLE SUPPLIER (
+  2   SupplierID NUMBER(5) PRIMARY KEY,
+  3   SupplierName VARCHAR(20) NOT NULL,
+  4   Email VARCHAR(100) UNIQUE,
+  5   Phone NUMBER(10) CHECK (Phone > 0 AND LENGTH(Phone) = 10),
+  6   Address VARCHAR(255),
+  7   ProductID NUMBER(5),
+  8   CONSTRAINT FK_ProductID FOREIGN KEY (ProductID)
+  9   REFERENCES PRODUCT (ProductID)
+ 10  );
+
+Table created.
+
+
+  1  CREATE TABLE CHOCOLATE (
+  2      ChocolateID NUMBER(5) PRIMARY KEY,
+  3      ChocolateName VARCHAR(20) NOT NULL,
+  4      Brand VARCHAR(20) NOT NULL,
+  5      Price NUMBER(30) CHECK (Price > 0),
+  6      SupplierID NUMBER(5),
+  7      CONSTRAINT FK_SupplierID FOREIGN KEY (SupplierID)
+  8      REFERENCES SUPPLIER (SupplierID)

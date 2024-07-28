@@ -1,0 +1,287 @@
+SQL> INSERT INTO STUDENT_TABLE
+  2  VALUES (34567,'SEEMA',9873527547,22,8363352456,73539);
+
+1 row created.
+
+SQL> INSERT INTO
+  2  STUDENT_TABLE
+  3  VALUES(34567,'NEHA',8753268747,21,NULL,87654);
+VALUES(34567,'NEHA',8753268747,21,NULL,87654)
+                                  *
+ERROR at line 3:
+ORA-01400: cannot insert NULL into ("SCOTT"."STUDENT_TABLE"."ROLLNO") 
+
+
+SQL> INSERT INTO
+  2  STUDENT_TABLE
+  3  VALUES(34567,'NEHA',8753268747,NULL,7653257853,76433);
+INSERT INTO
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.SYS_C005543) violated 
+
+
+SQL> INSERT INTO STUDENT_TABLE
+  2  VALUES(34567,'NEHA',8753268747,NULL,7653257853,76433);
+INSERT INTO STUDENT_TABLE
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.SYS_C005543) violated 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STUDENT_TABLE
+  2* VALUES(45678,'NEHA',8753268747,NULL,7653257853,76433)
+SQL> ;
+  1  INSERT INTO STUDENT_TABLE
+  2* VALUES(45678,'NEHA',8753268747,NULL,7653257853,76433)
+SQL> /
+
+1 row created.
+
+SQL> SELECT * FROM STUDENT_TABLE;
+
+       SID SNAME                   PHONENO        AGE ROLLNO       ADHAR_NO                                                                                                                             
+---------- -------------------- ---------- ---------- ---------- ----------                                                                                                                             
+     12345 Kanupriya            7895872411         21 2000501020      56789                                                                                                                             
+     23456 MANTASHA             7835477391         22 6452892735      67890                                                                                                                             
+     34567 SEEMA                9873527547         22 8363352456      73539                                                                                                                             
+     45678 NEHA                 8753268747            7653257853      76433                                                                                                                             
+
+SQL> INSERT INTO STUDENT_TABLE
+  2  VALUES (56789,'VIKASH',NULL,22,7653298765,98764);
+
+1 row created.
+
+SQL> SELECT *
+  2  FROM STUDENT_TABLE;
+
+       SID SNAME                   PHONENO        AGE ROLLNO       ADHAR_NO                                                                                                                             
+---------- -------------------- ---------- ---------- ---------- ----------                                                                                                                             
+     12345 Kanupriya            7895872411         21 2000501020      56789                                                                                                                             
+     23456 MANTASHA             7835477391         22 6452892735      67890                                                                                                                             
+     34567 SEEMA                9873527547         22 8363352456      73539                                                                                                                             
+     45678 NEHA                 8753268747            7653257853      76433                                                                                                                             
+     56789 VIKASH                                  22 7653298765      98764                                                                                                                             
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  MODIFY ROLLNO NUMBER(10) NULL;
+MODIFY ROLLNO NUMBER(10) NULL
+       *
+ERROR at line 2:
+ORA-01439: column to be modified must be empty to change datatype 
+
+
+SQL> INSERT INTO STUDENT_TABLE
+  2  (SID,SNAME)
+  3  VALUES
+  4  (67890, 'TASAVVAR');
+INSERT INTO STUDENT_TABLE
+*
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SCOTT"."STUDENT_TABLE"."ROLLNO") 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STUDENT_TABLE
+  2  (SID,SNAME)
+  3  VALUES
+  4* (67890, 'TASAVVAR')
+SQL> /
+INSERT INTO STUDENT_TABLE
+*
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SCOTT"."STUDENT_TABLE"."ROLLNO") 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STUDENT_TABLE
+  2  (SID,SNAME,ROLLNO)
+  3  VALUES
+  4* (67890, 'TASAVVAR',7654322876)
+SQL> /
+
+1 row created.
+
+SQL> SELECT *
+  2  FROM STUDENT_TABLE;
+
+       SID SNAME                   PHONENO        AGE ROLLNO       ADHAR_NO                                                                                                                             
+---------- -------------------- ---------- ---------- ---------- ----------                                                                                                                             
+     12345 Kanupriya            7895872411         21 2000501020      56789                                                                                                                             
+     23456 MANTASHA             7835477391         22 6452892735      67890                                                                                                                             
+     34567 SEEMA                9873527547         22 8363352456      73539                                                                                                                             
+     45678 NEHA                 8753268747            7653257853      76433                                                                                                                             
+     56789 VIKASH                                  22 7653298765      98764                                                                                                                             
+     67890 TASAVVAR                                   7654322876                                                                                                                                        
+
+6 rows selected.
+
+SQL> INSERT INTO
+  2  VALUES (&SID,'&SNAME',&PHONE,&AGE,&ROLL,&ADHAR);
+Enter value for sid: 78901
+Enter value for sname: SEBI
+Enter value for phone: 7654328960
+Enter value for age: 23
+Enter value for roll: 7652829638
+Enter value for adhar: 87629
+old   2: VALUES (&SID,'&SNAME',&PHONE,&AGE,&ROLL,&ADHAR)
+new   2: VALUES (78901,'SEBI',7654328960,23,7652829638,87629)
+VALUES (78901,'SEBI',7654328960,23,7652829638,87629)
+*
+ERROR at line 2:
+ORA-00903: invalid table name 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STUDENT_TABLE
+  2* VALUES (&SID,'&SNAME',&PHONE,&AGE,&ROLL,&ADHAR)
+SQL> /
+Enter value for sid: 78901
+Enter value for sname: SEBI
+Enter value for phone: 7654328960
+Enter value for age: 23
+Enter value for roll:  7652829638
+Enter value for adhar: 87629
+old   2: VALUES (&SID,'&SNAME',&PHONE,&AGE,&ROLL,&ADHAR)
+new   2: VALUES (78901,'SEBI',7654328960,23, 7652829638,87629)
+
+1 row created.
+
+SQL> SELECT *
+  2  FROM STUDENT_TABLE;
+
+       SID SNAME                   PHONENO        AGE ROLLNO       ADHAR_NO                                                                                                                             
+---------- -------------------- ---------- ---------- ---------- ----------                                                                                                                             
+     12345 Kanupriya            7895872411         21 2000501020      56789                                                                                                                             
+     23456 MANTASHA             7835477391         22 6452892735      67890                                                                                                                             
+     34567 SEEMA                9873527547         22 8363352456      73539                                                                                                                             
+     45678 NEHA                 8753268747            7653257853      76433                                                                                                                             
+     56789 VIKASH                                  22 7653298765      98764                                                                                                                             
+     67890 TASAVVAR                                   7654322876                                                                                                                                        
+     78901 SEBI                 7654328960         23 7652829638      87629                                                                                                                             
+
+7 rows selected.
+
+SQL> INSERT INTO
+  2  (SID,SNAME,ROLLNO)
+  3  VALUES
+  4  (&SID,'&SNAME',&ROLLNO);
+Enter value for sid: 13254
+Enter value for sname: LUBNA
+Enter value for rollno: 7826358262
+old   4: (&SID,'&SNAME',&ROLLNO)
+new   4: (13254,'LUBNA',7826358262)
+(SID,SNAME,ROLLNO)
+ *
+ERROR at line 2:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STUDENT_TABLE
+  2  (SID,SNAME,ROLLNO)
+  3  VALUES
+  4* (&SID,'&SNAME',&ROLLNO)
+SQL> /
+Enter value for sid: 13254
+Enter value for sname: LUBNA
+Enter value for rollno: 7826358262
+old   4: (&SID,'&SNAME',&ROLLNO)
+new   4: (13254,'LUBNA',7826358262)
+
+1 row created.
+
+SQL> SELECT * FROM STUDENT_TABLE;
+
+       SID SNAME                   PHONENO        AGE ROLLNO       ADHAR_NO                                                                                                                             
+---------- -------------------- ---------- ---------- ---------- ----------                                                                                                                             
+     12345 Kanupriya            7895872411         21 2000501020      56789                                                                                                                             
+     23456 MANTASHA             7835477391         22 6452892735      67890                                                                                                                             
+     34567 SEEMA                9873527547         22 8363352456      73539                                                                                                                             
+     45678 NEHA                 8753268747            7653257853      76433                                                                                                                             
+     56789 VIKASH                                  22 7653298765      98764                                                                                                                             
+     67890 TASAVVAR                                   7654322876                                                                                                                                        
+     78901 SEBI                 7654328960         23 7652829638      87629                                                                                                                             
+     13254 LUBNA                                      7826358262                                                                                                                                        
+
+8 rows selected.
+
+SQL> UPDATE TABLE STUDENT_TABLE
+  2  SET VALUE PHONENO=7252786256
+  3  WHERE SID=56789;
+UPDATE TABLE STUDENT_TABLE
+       *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  UPDATE STUDENT_TABLE
+  2  SET VALUE PHONENO=7252786256
+  3* WHERE SID=56789
+SQL> /
+SET VALUE PHONENO=7252786256
+          *
+ERROR at line 2:
+ORA-00927: missing equal sign 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  UPDATE STUDENT_TABLE
+  2  SET PHONENO=7252786256
+  3* WHERE SID=56789
+SQL> /
+
+1 row updated.
+
+SQL> SELECT *
+  2  FROM STUDENT_TABLE;
+
+       SID SNAME                   PHONENO        AGE ROLLNO       ADHAR_NO                                                                                                                             
+---------- -------------------- ---------- ---------- ---------- ----------                                                                                                                             
+     12345 Kanupriya            7895872411         21 2000501020      56789                                                                                                                             
+     23456 MANTASHA             7835477391         22 6452892735      67890                                                                                                                             
+     34567 SEEMA                9873527547         22 8363352456      73539                                                                                                                             
+     45678 NEHA                 8753268747            7653257853      76433                                                                                                                             
+     56789 VIKASH               7252786256         22 7653298765      98764                                                                                                                             
+     67890 TASAVVAR                                   7654322876                                                                                                                                        
+     78901 SEBI                 7654328960         23 7652829638      87629                                                                                                                             
+     13254 LUBNA                                      7826358262                                                                                                                                        
+
+8 rows selected.
+
+SQL> DELETE FROM STUDENT_TABLE
+  2  WHERE SID=13254;
+
+1 row deleted.
+
+SQL> SELECT * FROM STUDENT_TABLE;
+
+       SID SNAME                   PHONENO        AGE ROLLNO       ADHAR_NO                                                                                                                             
+---------- -------------------- ---------- ---------- ---------- ----------                                                                                                                             
+     12345 Kanupriya            7895872411         21 2000501020      56789                                                                                                                             
+     23456 MANTASHA             7835477391         22 6452892735      67890                                                                                                                             
+     34567 SEEMA                9873527547         22 8363352456      73539                                                                                                                             
+     45678 NEHA                 8753268747            7653257853      76433                                                                                                                             
+     56789 VIKASH               7252786256         22 7653298765      98764                                                                                                                             
+     67890 TASAVVAR                                   7654322876                                                                                                                                        
+     78901 SEBI                 7654328960         23 7652829638      87629                                                                                                                             
+
+7 rows selected.
+
+SQL> SPOOL OFF;

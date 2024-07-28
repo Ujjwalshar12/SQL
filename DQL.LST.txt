@@ -1,0 +1,319 @@
+SQL> SET LINES 200 PAGES 200;
+SQL> RENAME STUDENT TO STUDENT_TABLE;
+
+Table renamed.
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  ADD S_ROLLNO NUMBER(2) CHECK(NUMBER>0) CHECK(LENGTH(NUMBER)=2) , SNAME VARCHAR(10) NOT NULL ;
+ADD S_ROLLNO NUMBER(2) CHECK(NUMBER>0) CHECK(LENGTH(NUMBER)=2) , SNAME VARCHAR(10) NOT NULL 
+                             *
+ERROR at line 2:
+ORA-00936: missing expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE STUDENT_TABLE
+  2* ADD S_ROLLNO NUMBER(2) CHECK(S_ROLLNO>0) CHECK(LENGTH(S_ROLLNO)=2) , SNAME VARCHAR(10) NOT NULL 
+SQL> /
+ADD S_ROLLNO NUMBER(2) CHECK(S_ROLLNO>0) CHECK(LENGTH(S_ROLLNO)=2) , SNAME VARCHAR(10) NOT NULL 
+                                                                   *
+ERROR at line 2:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  ADD S_ROLLNO NUMBER(2) CHECK(S_ROLLNO>0) CHECK(LENGTH(S_ROLLNO)=2) ;
+
+Table altered.
+
+SQL>  ALTER TABLE STUDENT_TABLE
+  2   ADD SNAME VARCHAR(10) NOT NULL;
+ ADD SNAME VARCHAR(10) NOT NULL
+     *
+ERROR at line 2:
+ORA-01430: column being added already exists in table 
+
+
+SQL> SELECT *
+  2  FROM STUDENT_TABLE;
+
+no rows selected
+
+SQL> INSERT INTO
+  2  (S_ROLLNO , SNAME)
+  3  VALUES
+  4  (1,'KANUPRIYA');
+(S_ROLLNO , SNAME)
+ *
+ERROR at line 2:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> INSERT INTO STUDENT_TABLE
+  2  (S_ROLLNO,SNAME)
+  3  VALUES
+  4  (1,'KANUPRIYA');
+INSERT INTO STUDENT_TABLE
+*
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SCOTT"."STUDENT_TABLE"."SID") 
+
+
+SQL> INSERT INTO STUDENT_TABLE
+  2  (S_ROLLNO )
+  3  VALUES
+  4  (1);
+INSERT INTO STUDENT_TABLE
+*
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SCOTT"."STUDENT_TABLE"."SID") 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STUDENT_TABLE
+  2  (S_ROLLNO )
+  3  VALUES
+  4* (1)
+SQL> /
+INSERT INTO STUDENT_TABLE
+*
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SCOTT"."STUDENT_TABLE"."SID") 
+
+
+SQL> ALTER TABLE INSERT INTO STUDENT_TABLE
+  2  (S_ROLLNO )
+  3  VALUES
+  4  ;
+ALTER TABLE INSERT INTO STUDENT_TABLE
+            *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  RENAME COLUMN S_ROLLNO TO ROLLNO;
+
+Table altered.
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  DROP COLUMN ROLLNO;
+
+Table altered.
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  ADD ROLLNO NUMBER(2)  CHECK(S_ROLLNO>0) CHECK(LENGTH(S_ROLLNO)=2) ;
+ADD ROLLNO NUMBER(2)  CHECK(S_ROLLNO>0) CHECK(LENGTH(S_ROLLNO)=2) 
+                                        *
+ERROR at line 2:
+ORA-02438: Column check constraint cannot reference other columns 
+
+
+SQL>  ALTER TABLE STUDENT_TABLE
+  2   ADD ROLLNO NUMBER(2) UNIQUE NOT NULL;
+
+Table altered.
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  MODIFY ROLLNO VARCHAR(10);
+
+Table altered.
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  MODIFY ROLLNO PRIMARY KEY;
+MODIFY ROLLNO PRIMARY KEY
+              *
+ERROR at line 2:
+ORA-02260: table can have only one primary key 
+
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  MODIFY ROLLNO UNIQUE;
+MODIFY ROLLNO UNIQUE
+              *
+ERROR at line 2:
+ORA-02261: such unique or primary key already exists in the table 
+
+
+SQL> DESC STUDENT_TABLE ;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ SID                                                                                                               NOT NULL NUMBER(5)
+ SNAME                                                                                                             NOT NULL VARCHAR2(20)
+ PHONENO                                                                                                           NOT NULL NUMBER(10)
+ AGE                                                                                                                        NUMBER(2)
+ ROLLNO                                                                                                            NOT NULL VARCHAR2(10)
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  MODIFY PHONENO NUMBER(10) ;
+
+Table altered.
+
+SQL> DESC STUDENT_TABLE;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ SID                                                                                                               NOT NULL NUMBER(5)
+ SNAME                                                                                                             NOT NULL VARCHAR2(20)
+ PHONENO                                                                                                           NOT NULL NUMBER(10)
+ AGE                                                                                                                        NUMBER(2)
+ ROLLNO                                                                                                            NOT NULL VARCHAR2(10)
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  MODIFY PHONENO NUMBER(10) NULL ;
+
+Table altered.
+
+SQL> DESC STUDENT_TABLE;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ SID                                                                                                               NOT NULL NUMBER(5)
+ SNAME                                                                                                             NOT NULL VARCHAR2(20)
+ PHONENO                                                                                                                    NUMBER(10)
+ AGE                                                                                                                        NUMBER(2)
+ ROLLNO                                                                                                            NOT NULL VARCHAR2(10)
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                                                                                                                                                       
+------------------------------ ------- ----------                                                                                                                                                       
+DEPT                           TABLE                                                                                                                                                                    
+EMP                            TABLE                                                                                                                                                                    
+BONUS                          TABLE                                                                                                                                                                    
+SALGRADE                       TABLE                                                                                                                                                                    
+ACCOUNTS                       TABLE                                                                                                                                                                    
+COFFEE                         TABLE                                                                                                                                                                    
+TEACHER                        TABLE                                                                                                                                                                    
+STUDENT_TABLE                  TABLE                                                                                                                                                                    
+PIZZA                          TABLE                                                                                                                                                                    
+PIZZAS                         TABLE                                                                                                                                                                    
+QSPIDERS                       TABLE                                                                                                                                                                    
+SESSIONS                       TABLE                                                                                                                                                                    
+
+12 rows selected.
+
+SQL> VV                                                                                                                                                                                                 ;
+SP2-0734: unknown command beginning "VV        ..." - rest of line ignored.
+SQL> ALTER TABLE STUDENT_TABLE
+  2  ADD ADHAR_NO NUMBER(5) CHECK(LENGTH(NUMBER)=5) CHECK(NUMBER>0);
+ADD ADHAR_NO NUMBER(5) CHECK(LENGTH(NUMBER)=5) CHECK(NUMBER>0)
+                                    *
+ERROR at line 2:
+ORA-00936: missing expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE STUDENT_TABLE
+  2* ADD ADHAR_NO NUMBER(5) CHECK(LENGTH(ADHAR_NO)=5) CHECK(ADHAR_NO>0)
+SQL> /
+
+Table altered.
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  ADD CONSTRAINT UK_ADHAR_NO UNIQUE (ADHAR_NO);
+
+Table altered.
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  DROP CONSTRAINT UK_ADHAR_NO ;
+
+Table altered.
+
+SQL>  ALTER TABLE STUDENT_TABLE
+  2   ADD CONSTRAINT UK_ADHAR_NO UNIQUE (ADHAR_NO);
+
+Table altered.
+
+SQL> DESC STUDENT_TABLE;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ SID                                                                                                               NOT NULL NUMBER(5)
+ SNAME                                                                                                             NOT NULL VARCHAR2(20)
+ PHONENO                                                                                                                    NUMBER(10)
+ AGE                                                                                                                        NUMBER(2)
+ ROLLNO                                                                                                            NOT NULL VARCHAR2(10)
+ ADHAR_NO                                                                                                                   NUMBER(5)
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  DROP CONSTRAINT UK_ADHAR_NO ;
+
+Table altered.
+
+SQL> DESC STUDENT_TABLE;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ SID                                                                                                               NOT NULL NUMBER(5)
+ SNAME                                                                                                             NOT NULL VARCHAR2(20)
+ PHONENO                                                                                                                    NUMBER(10)
+ AGE                                                                                                                        NUMBER(2)
+ ROLLNO                                                                                                            NOT NULL VARCHAR2(10)
+ ADHAR_NO                                                                                                                   NUMBER(5)
+
+SQL> SELECT [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[;
+SELECT [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
+       *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT CONSTRAINT_TYPE,CONSTRAINT_NAME
+  2  FROM USER.CONSTRAINTS
+  3  WHERE TABLE_NAME ='STUDENT_TABLE';
+FROM USER.CONSTRAINTS
+     *
+ERROR at line 2:
+ORA-00903: invalid table name 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CONSTRAINT_TYPE, CONSTRAINT_NAME
+  2  FROM USER_CONSTRAINTS
+  3* WHERE TABLE_NAME ='STUDENT_TABLE'
+SQL> /
+
+C CONSTRAINT_NAME                                                                                                                                                                                       
+- ------------------------------                                                                                                                                                                        
+C SYS_C005536                                                                                                                                                                                           
+C SYS_C005596                                                                                                                                                                                           
+C SYS_C005538                                                                                                                                                                                           
+C SYS_C005539                                                                                                                                                                                           
+C SYS_C005540                                                                                                                                                                                           
+C SYS_C005541                                                                                                                                                                                           
+C SYS_C005542                                                                                                                                                                                           
+P SYS_C005543                                                                                                                                                                                           
+C SYS_C005594                                                                                                                                                                                           
+U SYS_C005595                                                                                                                                                                                           
+C SYS_C005597                                                                                                                                                                                           
+
+11 rows selected.
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  DROP CONSTRAINT  SYS_C005595;
+
+Table altered.
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  ADD CONSTRAINT FK_SID FORIEGN KEY(SID) REFERENCES PIZZAS(SID);
+ADD CONSTRAINT FK_SID FORIEGN KEY(SID) REFERENCES PIZZAS(SID)
+                                  *
+ERROR at line 2:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> ALTER TABLE STUDENT_TABLE
+  2  ADD CONSTRAINT FK_SID FORIEGN KEY(ORDERID) REFERENCES PIZZAS(ORDERID);
+ADD CONSTRAINT FK_SID FORIEGN KEY(ORDERID) REFERENCES PIZZAS(ORDERID)
+                                  *
+ERROR at line 2:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> -- SHORT METHOD FOR THIS
+SQL> SPOOL OFF;

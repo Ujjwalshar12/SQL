@@ -1,0 +1,261 @@
+SQL> SET LINES 200 PAGES 200;
+SQL> SELECT LAST_DAY(17-JUL-24)
+  2  FROM DUAL;
+SELECT LAST_DAY(17-JUL-24)
+                   *
+ERROR at line 1:
+ORA-00904: "JUL": invalid identifier 
+
+
+SQL> SELECT LAST_DAY('17-JUL-24')
+  2  FROM DUAL;
+
+LAST_DAY(                                                                                                                                                                                               
+---------                                                                                                                                                                                               
+31-JUL-24                                                                                                                                                                                               
+
+SQL> SELECT DAY('17-JUL-24')
+  2  FROM DUAL;
+SELECT DAY('17-JUL-24')
+       *
+ERROR at line 1:
+ORA-00904: "DAY": invalid identifier 
+
+
+SQL> SELECT TO_CHAR('17-JUL-24',DAY)
+  2  FROM DUAL;
+SELECT TO_CHAR('17-JUL-24',DAY)
+                           *
+ERROR at line 1:
+ORA-00904: "DAY": invalid identifier 
+
+
+SQL> SELECT TO_CHAR('17-JUL-24','DAY')
+  2  FROM DUAL;
+SELECT TO_CHAR('17-JUL-24','DAY')
+               *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> SELECT TO_CHAR('17-JUL-24',"DAY")
+  2  FROM DUAL;
+SELECT TO_CHAR('17-JUL-24',"DAY")
+                           *
+ERROR at line 1:
+ORA-00904: "DAY": invalid identifier 
+
+
+SQL> SELECT TO_CHAR(HIREDATE)
+  2  FROM EMP;
+
+TO_CHAR(H                                                                                                                                                                                               
+---------                                                                                                                                                                                               
+17-DEC-80                                                                                                                                                                                               
+20-FEB-81                                                                                                                                                                                               
+22-FEB-81                                                                                                                                                                                               
+02-APR-81                                                                                                                                                                                               
+28-SEP-81                                                                                                                                                                                               
+01-MAY-81                                                                                                                                                                                               
+09-JUN-81                                                                                                                                                                                               
+19-APR-87                                                                                                                                                                                               
+17-NOV-81                                                                                                                                                                                               
+08-SEP-81                                                                                                                                                                                               
+23-MAY-87                                                                                                                                                                                               
+03-DEC-81                                                                                                                                                                                               
+03-DEC-81                                                                                                                                                                                               
+23-JAN-82                                                                                                                                                                                               
+
+14 rows selected.
+
+SQL> SELECT TO_CHAR(HIREDATE,DAY)
+  2  FROM EMP;
+SELECT TO_CHAR(HIREDATE,DAY)
+                        *
+ERROR at line 1:
+ORA-00904: "DAY": invalid identifier 
+
+
+SQL> SELECT TO_CHAR(HIREDATE,'DAY')
+  2  FROM EMP;
+
+TO_CHAR(H                                                                                                                                                                                               
+---------                                                                                                                                                                                               
+WEDNESDAY                                                                                                                                                                                               
+FRIDAY                                                                                                                                                                                                  
+SUNDAY                                                                                                                                                                                                  
+THURSDAY                                                                                                                                                                                                
+MONDAY                                                                                                                                                                                                  
+FRIDAY                                                                                                                                                                                                  
+TUESDAY                                                                                                                                                                                                 
+SUNDAY                                                                                                                                                                                                  
+TUESDAY                                                                                                                                                                                                 
+TUESDAY                                                                                                                                                                                                 
+SATURDAY                                                                                                                                                                                                
+THURSDAY                                                                                                                                                                                                
+THURSDAY                                                                                                                                                                                                
+SATURDAY                                                                                                                                                                                                
+
+14 rows selected.
+
+SQL> SELECT *
+  2  FROM EMP
+  3  WHERE TO_CHAR(HIREDATE,'DAY') IN 'SUNDAY';
+
+no rows selected
+
+SQL> SELECT *
+  2  FROM EMP
+  3  WHERE TO_CHAR(HIREDATE,'MON') IN 'FEB';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO                                                                                                                   
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------                                                                                                                   
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30                                                                                                                   
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30                                                                                                                   
+
+SQL>  SELECT *
+  2   FROM EMP
+  3   WHERE TO_CHAR(HIREDATE,'DAY') IN 'SUNDAY';
+
+no rows selected
+
+SQL>  SELECT *
+  2   FROM EMP
+  3   WHERE TO_CHAR(HIREDATE,'DAY')= 'SUNDAY';
+
+no rows selected
+
+SQL>  SELECT *
+  2   FROM EMP
+  3   WHERE TO_CHAR(HIREDATE,'DAY')= 'MONDAY';
+
+no rows selected
+
+SQL> SELECT *
+  2  FROM EMP
+  3  WHERE TO_CHAR(HIREDATE,'DAY') IN 'MONDAY';
+
+no rows selected
+
+SQL> SELECT *
+  2  FROM EMP
+  3  WHERE TO_CHAR(HIREDATE,'DAY')= MONDAY;
+WHERE TO_CHAR(HIREDATE,'DAY')= MONDAY
+                               *
+ERROR at line 3:
+ORA-00904: "MONDAY": invalid identifier 
+
+
+SQL> SELECT TO_CHAR(HIREDATE,'DAY')
+  2  FROM EMP;
+
+TO_CHAR(H                                                                                                                                                                                               
+---------                                                                                                                                                                                               
+WEDNESDAY                                                                                                                                                                                               
+FRIDAY                                                                                                                                                                                                  
+SUNDAY                                                                                                                                                                                                  
+THURSDAY                                                                                                                                                                                                
+MONDAY                                                                                                                                                                                                  
+FRIDAY                                                                                                                                                                                                  
+TUESDAY                                                                                                                                                                                                 
+SUNDAY                                                                                                                                                                                                  
+TUESDAY                                                                                                                                                                                                 
+TUESDAY                                                                                                                                                                                                 
+SATURDAY                                                                                                                                                                                                
+THURSDAY                                                                                                                                                                                                
+THURSDAY                                                                                                                                                                                                
+SATURDAY                                                                                                                                                                                                
+
+14 rows selected.
+
+SQL>  SELECT *
+  2   FROM EMP
+  3   WHERE TO_CHAR(HIREDATE,'DAY')= 'SUNDAY ';
+
+no rows selected
+
+SQL> SELECT *
+  2  FROM EMP
+  3  WHERE TO_CHAR(HIREDATE, 'DAY') = 'SUNDAY   ';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO                                                                                                                   
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------                                                                                                                   
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30                                                                                                                   
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20                                                                                                                   
+
+SQL> SELECT *
+  2  FROM EMP
+  3  WHERE TO_CHAR(HIREDATE,'DAY') = 'SUNDAY   ';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO                                                                                                                   
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------                                                                                                                   
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30                                                                                                                   
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20                                                                                                                   
+
+SQL> SELECT SAL+COMM
+  2  FROM EMP;
+
+  SAL+COMM                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+                                                                                                                                                                                                        
+      1900                                                                                                                                                                                              
+      1750                                                                                                                                                                                              
+                                                                                                                                                                                                        
+      2650                                                                                                                                                                                              
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+      1500                                                                                                                                                                                              
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+
+14 rows selected.
+
+SQL> SELECT NVL(COMM,0) + SAL
+  2  FROM EMP ;
+
+NVL(COMM,0)+SAL                                                                                                                                                                                         
+---------------                                                                                                                                                                                         
+            800                                                                                                                                                                                         
+           1900                                                                                                                                                                                         
+           1750                                                                                                                                                                                         
+           2975                                                                                                                                                                                         
+           2650                                                                                                                                                                                         
+           2850                                                                                                                                                                                         
+           2450                                                                                                                                                                                         
+           3000                                                                                                                                                                                         
+           5000                                                                                                                                                                                         
+           1500                                                                                                                                                                                         
+           1100                                                                                                                                                                                         
+            950                                                                                                                                                                                         
+           3000                                                                                                                                                                                         
+           1300                                                                                                                                                                                         
+
+14 rows selected.
+
+SQL> SELECT NVL(COMM,2)+SAL
+  2  FROM EMP;
+
+NVL(COMM,2)+SAL                                                                                                                                                                                         
+---------------                                                                                                                                                                                         
+            802                                                                                                                                                                                         
+           1900                                                                                                                                                                                         
+           1750                                                                                                                                                                                         
+           2977                                                                                                                                                                                         
+           2650                                                                                                                                                                                         
+           2852                                                                                                                                                                                         
+           2452                                                                                                                                                                                         
+           3002                                                                                                                                                                                         
+           5002                                                                                                                                                                                         
+           1500                                                                                                                                                                                         
+           1102                                                                                                                                                                                         
+            952                                                                                                                                                                                         
+           3002                                                                                                                                                                                         
+           1302                                                                                                                                                                                         
+
+14 rows selected.
+
+SQL> SPOOL OFF;
